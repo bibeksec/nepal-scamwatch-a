@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nepal ScamWatch — Online Fraud Reporting &amp; Awareness</title>
+<meta name="description" content="Search moderated scam reports and report online fraud in Nepal.">
+<style>
+:root{--navy:#10243e;--red:#c62828;--bg:#f4f6f8;--card:#fff;--line:#dfe4ea;--muted:#647282;--text:#17212b;--green:#237a4b;--blue:#1769aa}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:18px 20px}
+.wrap{max-width:1150px;margin:auto}
+.logo{font-size:24px;font-weight:800}
+.sub{opacity:.8;font-size:14px;margin-top:2px}
+main.wrap{padding:24px 18px}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px;margin-bottom:20px}
+.hero h1{margin:0 0 6px;font-size:32px}
+.hero p{margin:0;color:var(--muted)}
+.notice{margin-top:16px;padding:12px 14px;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;font-size:14px}
+.row{display:flex;gap:10px;margin-top:18px}
+input,select,textarea,button{font:inherit}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #ccd3da;border-radius:8px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid #90b4e0;border-color:#90b4e0}
+textarea{min-height:130px;resize:vertical}
+button{border:0;border-radius:8px;padding:11px 18px;cursor:pointer;font-weight:700;white-space:nowrap}
+button:disabled{opacity:.6;cursor:not-allowed}
+.primary{background:var(--red);color:#fff}
+.secondary{background:var(--navy);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;color:var(--muted);font-size:14px}
+.stat strong{display:block;font-size:30px;color:var(--text);margin-top:4px}
+.toolbar{display:flex;gap:10px;margin-bottom:18px;align-items:center}
+.toolbar select{max-width:260px}
+.toolbar .spacer{flex:1}
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;display:flex;flex-direction:column}
+.case img{width:100%;height:190px;object-fit:cover;background:#e9edf1}
+.case-body{padding:16px 18px 18px}
+.case-id{color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.04em}
+.case h3{margin:4px 0 8px;font-size:18px}
+.badge{display:inline-block;margin:0 4px 6px 0;padding:3px 9px;border-radius:20px;background:#eef2f5;font-size:12px;font-weight:700}
+.badge.high{background:#fde7e7;color:#a11}
+.badge.medium{background:#fff1d6;color:#8a5a00}
+.badge.low{background:#e3f4ea;color:var(--green)}
+.badge.corroborated{background:#e0eefb;color:var(--blue)}
+.case p{margin:8px 0;font-size:14px;white-space:pre-wrap;word-break:break-word}
+.ident{font-size:13px;word-break:break-all}
+.date{color:var(--muted);font-size:12px;margin-top:8px}
+.empty{grid-column:1/-1;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted)}
+section#report{margin-top:34px}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:5px}
+.hint{font-weight:400;color:var(--muted);font-size:12px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.msg{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:14px;display:none}
+.msg.ok{display:block;background:#e3f4ea;border:1px solid #b7e0c5}
+.msg.err{display:block;background:#fde7e7;border:1px solid #f1b5b5}
+footer{margin-top:50px;background:var(--navy);color:#fff;padding:28px 18px;text-align:center;font-size:14px}
+footer small{opacity:.75}
+@media(max-width:700px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .grid{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .row,.toolbar{flex-direction:column;align-items:stretch}
+ .toolbar select{max-width:none}
+ .hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo">🇳🇵 Nepal ScamWatch</div>
+  <div class="sub">Independent online fraud reporting &amp; awareness portal</div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Identify scams. Protect people.</h1>
+    <p>Search moderated scam reports, or submit a new report for review.</p>
+    <div class="notice">
+      Every report is reviewed before it is published. A report is <strong>not proof</strong> that a person committed a crime.
+      Do not upload intimate images or private victim information. If you are being blackmailed,
+      <strong>do not pay</strong>, stop contact, keep evidence and report to Nepal Police Cyber Bureau.
+    </div>
+    <div class="row">
+      <input id="search" type="search" placeholder="Search case ID, username, platform, keyword…" aria-label="Search reports">
+      <button class="secondary" id="searchBtn" type="button">Search</button>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Statistics">
+    <div class="stat">Public cases<strong id="total">0</strong></div>
+    <div class="stat">Sextortion / video call<strong id="sextortion">0</strong></div>
+    <div class="stat">Awaiting review<strong id="pending">0</strong></div>
+    <div class="stat">Corroborated<strong id="corroborated">0</strong></div>
+  </section>
+
+  <section>
+    <div class="toolbar">
+      <select id="category" aria-label="Filter by category">
+        <option value="All">All categories</option>
+      </select>
+      <div class="spacer"></div>
+      <button class="primary" id="goReport" type="button">Report a scam</button>
+    </div>
+    <div id="cases" class="cases"></div>
+  </section>
+
+  <section id="report">
+    <h2>Submit a scam report</h2>
+    <form id="reportForm" novalidate>
+      <div class="grid">
+        <div>
+          <label for="f-title">Title</label>
+          <input id="f-title" name="title" required maxlength="150" placeholder="e.g. WhatsApp video-call payment scam">
+        </div>
+        <div>
+          <label for="f-category">Category</label>
+          <select id="f-category" name="category"></select>
+        </div>
+        <div>
+          <label for="f-platform">Platform</label>
+          <select id="f-platform" name="platform"></select>
+        </div>
+        <div>
+          <label for="f-risk">Risk level</label>
+          <select id="f-risk" name="risk">
+            <option>Medium</option><option>High</option><option>Low</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="f-ident">Public identifier <span class="hint">(optional — username, masked phone like 98••••1234, or URL)</span></label>
+          <input id="f-ident" name="identifier" maxlength="200">
+        </div>
+        <div class="full">
+          <label for="f-desc">What happened?</label>
+          <textarea id="f-desc" name="description" required maxlength="5000" placeholder="Describe the scam: how they contacted you, what they asked for, what happened. Do not include your own private details."></textarea>
+        </div>
+        <div class="full">
+          <label for="f-file">Evidence image <span class="hint">(optional — JPG/PNG/WebP — large photos are shrunk automatically. Screenshots of profile, chat or payment request. No intimate images.)</span></label>
+          <input id="f-file" type="file" name="evidence" accept="image/jpeg,image/png,image/webp">
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label>Leave this empty<input name="website_url" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="full">
+          <button class="primary" id="submitBtn" type="submit">Submit report</button>
+          <div id="formMsg" class="msg" role="status"></div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  Nepal ScamWatch © 2026 — independent platform, not affiliated with Nepal Police.<br>
+  <small>Reports are user-submitted and moderated. To request a correction or removal, quote the case ID to the site administrator.</small>
+</footer>
+
+<script>
+const CATEGORIES=["Sextortion","Video Call Scam","Investment Fraud","Marketplace Fraud","Fake Employment","Phishing","Romance Scam","Other"];
+const PLATFORMS=["Facebook","Instagram","WhatsApp","Telegram","TikTok","Website","Marketplace","Other"];
+const $=id=>document.getElementById(id);
+
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function fill(sel,items){items.forEach(v=>{const o=document.createElement("option");o.textContent=v;sel.appendChild(o)})}
+
+fill($("category"),CATEGORIES);
+fill($("f-category"),CATEGORIES);
+fill($("f-platform"),PLATFORMS);
+
+async function loadStats(){
+  try{
+    const r=await fetch("/api/stats");const d=await r.json();
+    if(!d.success)return;
+    for(const k of ["total","sextortion","pending","corroborated"])$(k).textContent=d.stats[k]||0;
+  }catch(e){console.error(e)}
+}
+
+async function loadReports(){
+  const box=$("cases");
+  const p=new URLSearchParams();
+  const s=$("search").value.trim(),c=$("category").value;
+  if(s)p.set("search",s);
+  if(c&&c!=="All")p.set("category",c);
+  box.innerHTML='<div class="empty">Loading…</div>';
+  try{
+    const r=await fetch("/api/reports?"+p);const d=await r.json();
+    if(!d.success||!d.reports.length){box.innerHTML='<div class="empty">No public reports found.</div>';return}
+    box.innerHTML=d.reports.map(x=>{
+      const risk=String(x.risk||"").toLowerCase();
+      return '<article class="case">'
+        +(x.evidence_url?'<img loading="lazy" src="'+esc(x.evidence_url)+'" alt="Evidence for '+esc(x.case_id)+'">':"")
+        +'<div class="case-body">'
+        +'<div class="case-id">'+esc(x.case_id)+'</div>'
+        +'<h3>'+esc(x.title)+'</h3>'
+        +'<span class="badge">'+esc(x.category)+'</span>'
+        +'<span class="badge">'+esc(x.platform)+'</span>'
+        +'<span class="badge '+esc(risk)+'">Risk: '+esc(x.risk)+'</span>'
+        +(x.status==="corroborated"?'<span class="badge corroborated">Corroborated</span>':"")
+        +'<p>'+esc(x.description)+'</p>'
+        +(x.identifier?'<div class="ident"><strong>Identifier:</strong> '+esc(x.identifier)+'</div>':"")
+        +'<div class="date">Reported '+esc(new Date(x.created_at).toLocaleDateString())+'</div>'
+        +'</div></article>';
+    }).join("");
+  }catch(e){console.error(e);box.innerHTML='<div class="empty">Could not load reports. Please refresh.</div>'}
+}
+
+$("searchBtn").addEventListener("click",loadReports);
+$("search").addEventListener("keydown",e=>{if(e.key==="Enter")loadReports()});
+$("category").addEventListener("change",loadReports);
+$("goReport").addEventListener("click",()=>$("report").scrollIntoView({behavior:"smooth"}));
+
+// Shrink images in the browser so they fit the 1 MB limit
+async function shrink(file){
+  if(file.size<=900*1024&&/image\/(jpeg|png|webp)/.test(file.type))return file;
+  const bmp=await createImageBitmap(file);
+  let max=1600;
+  for(let i=0;i<5;i++){
+    const k=Math.min(1,max/Math.max(bmp.width,bmp.height));
+    const c=document.createElement("canvas");
+    c.width=Math.round(bmp.width*k);c.height=Math.round(bmp.height*k);
+    c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);
+    const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",0.8));
+    if(blob&&blob.size<=900*1024)return blob;
+    max=Math.round(max*0.7);
+  }
+  throw new Error("too big");
+}
+
+$("reportForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const form=e.currentTarget,btn=$("submitBtn"),msg=$("formMsg");
+  msg.className="msg";msg.textContent="";
+  if(!form.title.value.trim()||!form.description.value.trim()){
+    msg.className="msg err";msg.textContent="Please fill in the title and description.";return;
+  }
+  btn.disabled=true;btn.textContent="Submitting…";
+  try{
+    const fd=new FormData(form);
+    const f=form.evidence.files[0];
+    if(f&&f.size>0){
+      try{fd.set("evidence",await shrink(f),"evidence.jpg")}
+      catch(err){msg.className="msg err";msg.textContent="Could not read that image. Try a different file.";return}
+    }
+    const r=await fetch("/api/reports",{method:"POST",body:fd});
+    const d=await r.json();
+    if(!r.ok){msg.className="msg err";msg.textContent=d.error||"Submission failed.";return}
+    msg.className="msg ok";
+    msg.innerHTML="Report submitted. Your case ID is <strong>"+esc(d.case_id)+"</strong>. It will appear publicly only after moderation — please save the ID.";
+    form.reset();loadStats();
+  }catch(err){
+    console.error(err);msg.className="msg err";msg.textContent="Network error. Please try again.";
+  }finally{btn.disabled=false;btn.textContent="Submit report"}
+});
+
+loadStats();loadReports();
+</script>
+</body>
+</html>
