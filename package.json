@@ -1,0 +1,15 @@
+{
+  "name": "nepal-scamwatch",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate:local": "wrangler d1 migrations apply nepal-scamwatch-db --local",
+    "migrate:remote": "wrangler d1 migrations apply nepal-scamwatch-db --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
