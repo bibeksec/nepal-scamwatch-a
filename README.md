@@ -16,11 +16,13 @@ npx wrangler secret put ADMIN_TOKEN           # paste it (needs the Worker deplo
 npx wrangler deploy
 ```
 If `secret put` complains the Worker doesn't exist yet, run `npx wrangler deploy` first, then `secret put`.
-
+<img width="1853" height="925" alt="Screenshot from 2026-10-08 10-30-30" src="https://github.com/user-attachments/assets/e8b60024-7406-496d-aace-eaae20121266" />
+https://nepal-scamwatch.bibektamata012.workers.dev/
 ## Pages
 - `/`            public site
 - `/admin.html`  moderation panel (enter your ADMIN_TOKEN)
-
+<img width="1871" height="931" alt="Screenshot from 2026-10-08 10-29-30" src="https://github.com/user-attachments/assets/1df08278-3624-441c-8213-0ce1f0bcbe80" />
+https://nepal-scamwatch.bibektamata012.workers.dev/admin
 ## Local testing
 Create `.dev.vars` containing `ADMIN_TOKEN=test123`, then:
 ```bash
